@@ -3,24 +3,30 @@ require_relative 'card' # card.rb を読み込む
 require_relative 'deck' # deck.rb を読み込む
 
 class Game 
-    def start
-        puts "戦争を開始します。"
-        #デッキをシャッフル
-        #カードを均等に配る
-
-        puts "カードが配られました。"
-
+    def initialize
+        @deck = Deck.new
     end
 
-    def battle
+    def wargame
+        puts "戦争を開始します。"
+        cards = @deck.shuffle_deck #デッキをシャッフル
+        player1_deck, player2_deck = cards.each_slice(52 / 2).to_a#カードを均等に配る
+        puts "カードが配られました。"
+        # print "Player 1's deck: #{player1_deck.inspect}"
         puts "戦争！"
-        puts "#{player1.Card}は#{player1.Deck}です。"
-        puts "#{player2.Card}は#{player2.Deck}です。"
-        if player1.Deck > player2.Deck#ここで条件分岐
-            puts "プレイヤー1が勝ちました。"
 
-        elsif player2.Deck > player1.Deck
+        player1_card = player1_deck.shift
+        player2_card = player2_deck.shift
+
+        puts "プレイヤー1のカードは#{player1_card}です。"
+        puts "プレイヤー2のカードは#{player2_card}です。"
+
+        if player1_card > player2_card#ここで条件分岐
+            puts "プレイヤー1が勝ちました。"
+            puts "戦争を終了します。"
+        elsif player2_card > player1_card
             puts "プレイヤー2が勝ちました。"
+            puts "戦争を終了します。"
         else 
             puts "引き分けです。"
 
@@ -28,8 +34,11 @@ class Game
 
     end
 
-    def owari
-        puts "戦争を終了します。"
-    end
+    # def end_game
+    #     puts "戦争を終了します。"
+    # end
+    
 
 end
+game = Game.new
+game.wargame
