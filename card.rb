@@ -1,15 +1,16 @@
 class Card
-    def initialize(name)
-        @name = name
-        @sort = sort
-        @number = number
-        @value = value
-
-
+    attr_reader :suit, :number
+    def initialize
+        @suit = ["スペード", "ハート", "ダイヤ", "クラブ"]
+        @number = (2..10).to_a + ['J', 'Q', 'K', 'A']#2からAまでを配列にする
+        # @value = value
     end
-
-    def 
-    
-    end
-
 end
+card = Card.new
+puts card.number
+#     def value
+#         @value = { "2" => 1, "3" => 2, "4" => 3, "5" => 4, "6" => 5, "7" => 6, "8" => 7, "9" => 8, "10" => 9, "J" => 10, "Q" => 11, "K" => 12, "A" => 13 }
+    
+#     end
+
+# end
