@@ -1,17 +1,17 @@
 #ゲームの中身
 require_relative 'card' # card.rb を読み込む
+require_relative 'deck' # deck.rb を読み込む
 
 class Game 
     def start
         puts "戦争を開始します。"
+        #デッキをシャッフル
         #カードを均等に配る
 
         puts "カードが配られました。"
 
     end
-    def shuffle
-        
-    end
+
     def battle
         puts "戦争！"
         puts "#{player1.Card}は#{player1.Deck}です。"

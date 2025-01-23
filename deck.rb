@@ -1,10 +1,15 @@
 require_relative 'card' # card.rb を読み込む
 
-private
-class Deck
+class Deck  #デッキクラス
+    attr_reader :deck
+    def initialize
+        @deck = Card.new.cards #ここでcardから配列を持ってくる
+    end
+
+    def shuffle_deck  #デッキをシャッフルするメソッド
+        @deck.shuffle
+    end
 
 end
-
-class Subdeck < Deck
-
-end
+deck = Deck.new #呼び出し
+puts deck.shuffle_deck
