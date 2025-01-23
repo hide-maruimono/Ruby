@@ -11,5 +11,3 @@ class Deck  #デッキクラス
     end
 
 end
-deck = Deck.new #呼び出し
-puts deck.shuffle_deck
