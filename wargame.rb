@@ -1,4 +1,5 @@
-
+#ゲームの中身
+require_relative 'card' # card.rb を読み込む
 
 class Game 
     def start
@@ -7,6 +8,9 @@ class Game
 
         puts "カードが配られました。"
 
+    end
+    def shuffle
+        
     end
     def battle
         puts "戦争！"
