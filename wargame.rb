@@ -18,6 +18,7 @@ class Game
         player1_deck, player2_deck = cards.each_slice(52 / 2).to_a#カードを均等に配る
 
         puts "カードが配られました。"
+        t_storage = [] # 引き分け時に場に出るカードを保持する配列
 
         loop do
             break if player1_deck.empty? || player2_deck.empty? #プレイヤーたちのデッキが0になるまで繰り返す処理 条件式をわかりやすく
@@ -27,6 +28,8 @@ class Game
             player1_card = player1_deck.shift #プレイヤー1が出したカード
             player2_card = player2_deck.shift #プレイヤー2が出したカード
 
+            t_storage.push(player1_card, player2_card) #場に出たカードを一時保存する
+
             puts "プレイヤー1のカードは#{player1_card}です。"
             puts "プレイヤー2のカードは#{player2_card}です。"
             value = Card.new #initializeでvalueを設定したら正しく動かなかったため、一旦ここでCardから引用
@@ -35,17 +38,20 @@ class Game
 
                 if player1_value > player2_value #ここで勝敗を決める
                     puts "プレイヤー1が勝ちました。"
-                    player1.stacks.push(player1_card, player2_card) #場札をスタックに送る
-                    puts "プレイヤー1が勝ちました。プレイヤー1はカードを#{player1_card.length}枚もらいました。"
-                    player1.stacks.clear
+                    player1.stacks.push(t_storage) #場札をスタックに送る
+                    puts "プレイヤー1が勝ちました。プレイヤー1はカードを#{t_storage.size}枚もらいました。"
+                    t_storage.clear
+                    next # ループの最初に戻る
+
                 elsif player1_value < player2_value
                     puts "プレイヤー2が勝ちました。"
-                    player2.stacks.push(player1_card, player2_card) #場札をスタックに送る
-                    puts "プレイヤー2が勝ちました。プレイヤー2はカードを#{player2_card.length}枚もらいました。"
-                    player2.stacks.clear
+                    player2.stacks.push(t_storage) #場札をスタックに送る
+                    puts "プレイヤー2が勝ちました。プレイヤー2はカードを#{t_storage.size}枚もらいました。"
+                    t_storage.clear
+                    next # ループの最初に戻る
                 else 
                     puts "引き分けです。"
-                        redo #もう一回戦争をする　ここのredoで既に場に出ているカードがスタックされるか？
+                    next #もう一回戦争をする　ここのredoで既に場に出ているカードがスタックされるか？
                 end
         end #loopの区切り
 
