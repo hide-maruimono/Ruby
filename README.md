@@ -1,1 +1,1 @@
-APPRENTICE Wargame
+APPRENTICE　「トランプゲームの戦争」
