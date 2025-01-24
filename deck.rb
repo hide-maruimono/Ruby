@@ -9,5 +9,4 @@ class Deck  #デッキクラス
     def shuffle_deck  #デッキをシャッフルするメソッド
         @deck.shuffle
     end
-
 end
