@@ -5,6 +5,7 @@ require_relative 'deck' # deck.rb を読み込む
 class Game 
     def initialize
         @deck = Deck.new
+        @value =Card.new
     end
 
     def wargame
@@ -20,11 +21,13 @@ class Game
 
         puts "プレイヤー1のカードは#{player1_card}です。"
         puts "プレイヤー2のカードは#{player2_card}です。"
+        # player1_value = card_value(player1_card)
+        # player2_value = card_value(player2_card)
 
         if player1_card > player2_card#ここで条件分岐
             puts "プレイヤー1が勝ちました。"
             puts "戦争を終了します。"
-        elsif player2_card > player1_card
+        elsif player1_card < player2_card
             puts "プレイヤー2が勝ちました。"
             puts "戦争を終了します。"
         else 
