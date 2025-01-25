@@ -18,7 +18,7 @@ class Game
     player1.deck, player2.deck = cards.each_slice(52 / 2).to_a #カードを均等に配る
 
     puts "カードが配られました。"
-    t_storage = []
+    t_storage = [] # 引き分け時に場に出るカードを保持する配列
 
     loop do
       if player1.deck.empty? && player1.stacks.empty? #プレイヤー1のデッキと手札両方空なら決着
@@ -48,12 +48,12 @@ class Game
       player2_value = value.value[player2_card] 
 
       if player1_value > player2_value #プレイヤー1が勝ちの場合
-        player1.stacks.concat(t_storage) #場札をスタックに送る
-        puts "プレイヤー1が勝ちました。プレイヤー1はカードを#{t_storage.size}枚もらいました。"
+        player1.stacks.concat(t_storage) #場札をスタックに送る 
+        puts "プレイヤー1が勝ちました。プレイヤー1はカードを#{t_storage.size}枚もらいました。" #ここでt_storageを使うため、concatを使用
         t_storage.clear
 
       elsif player1_value < player2_value #プレイヤー2が勝ちの場合
-        player2.stacks.concat(t_storage) #場札をスタックに送る
+        player2.stacks.concat(t_storage) 
         puts "プレイヤー2が勝ちました。プレイヤー2はカードを#{t_storage.size}枚もらいました。"
         t_storage.clear
 
